@@ -27,6 +27,7 @@ from gecosws_config_assistant.view.ADSetupDataElemView import ADSetupDataElemVie
 from gecosws_config_assistant.view.UserAuthDialog import UserAuthDialog, LOCAL_USERS, LDAP_USERS, AD_USERS
 
 from gecosws_config_assistant.util.Validation import Validation
+from gecosws_config_assistant.util.PasswordMaskingFilter import PasswordMaskingFilter
 
 
 from gecosws_config_assistant.dao.UserAuthenticationMethodDAO import UserAuthenticationMethodDAO
@@ -63,6 +64,7 @@ class UserAuthenticationMethodController(object):
         self.mainController = mainController
         self.dao = UserAuthenticationMethodDAO()
         self.logger = logging.getLogger('UserAuthenticationMethodController')
+        self.logger.addFilter(PasswordMaskingFilter())
 
     def getView(self, mainController):
         self.logger.debug('getView - BEGIN')

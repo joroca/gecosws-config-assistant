@@ -21,6 +21,7 @@ __copyright__ = "Copyright (C) 2015, Junta de Andalucía <devmaster@guadalinex.o
 __license__ = "GPL-2"
 
 import re
+from urlparse import urlparse
 
 class Validation(object):
     '''
@@ -50,6 +51,12 @@ class Validation(object):
             return True
         else:
             return False
+
+    def isValidPath(self, url):
+        if url is None:
+            return False
+
+        return urlparse(url).path in ['','/']
 
     def isLdapUri(self, url):
         if url is None:

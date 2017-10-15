@@ -27,6 +27,8 @@ import sys
 import time
 import select
 
+from gecosws_config_assistant.util.PasswordMaskingFilter import PasswordMaskingFilter
+
 if 'check' in sys.argv:
     # Mock view classes for testing purposses
     print "==> Loading mocks..."
@@ -46,6 +48,7 @@ class CommandUtil(object):
         Constructor
         '''
         self.logger = logging.getLogger('CommandUtil')
+        self.logger.addFilter(PasswordMaskingFilter())
 
         # Timeout is 2000 milliseconds
         self.timeout = 2000
